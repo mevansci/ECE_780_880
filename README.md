@@ -1,4 +1,4 @@
-Standalone Inference & Training — Professional Guide
+ece 880/780 Course project
 ==================================================
 
 This directory provides a self-contained toolkit to: (1) train MedNeXt models (single-fold, cross-validation, and ablation variants), and (2) run inference (single model, multi-fold ensemble, and GliGAN-augmented ensemble).
