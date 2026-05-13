@@ -195,29 +195,4 @@ Edit `standalone_inference/config.py` to change defaults for:
 - `GLIGAN_ROOT` (where GliGAN weights are located)
 - Checkpoint templates such as `ABLATION_CKPT_TEMPLATE` and `ENSEMBLE_CKPT_DIR`
 
-Operational tips
-----------------
-- Reproducibility: set `cfg.SEED` in `config.py` and avoid non-deterministic data augmentations when validating.
-- GPU memory: reduce `--batch-size` or use `MODEL_SIZE='S'` for smaller networks.
-- Checkpointing: training wrappers save per-epoch files named `epoch_XXX.pth`. For ensembles, copy the desired `best_model.pth` into `fold_*` subfolders.
-- Logging: add TensorBoard or CSV logging to `Trainer` if you need experiment tracking.
 
-Outputs
--------
-- Console summary: per-region DSC / HD95 and mean DSC.
-- Checkpoints: saved under the `--out-dir` you provide (per-epoch).
-
-Common issues & resolutions
----------------------------
-- "Checkpoint not found": verify `--ckpt` or `--ckpt-dir` and that `best_model.pth` exists.
-- "GliGAN module not available": ensure `GLIGAN_ROOT` is set and that the augmentation module dependencies are installed. The code will fall back to standard inference if GliGAN cannot be initialized.
-- OOM errors: lower `--batch-size` or switch to a smaller `MODEL_SIZE`.
-
-Contact / Next steps
---------------------
-If you want, I can:
-- Wire the exact project loss functions (true DSC++, ACE) into `Trainer`.
-- Add AMP, schedulers, and resume-from-checkpoint in `Trainer`.
-- Add result export (CSV) and automatic comparison scripts.
-
-Choose one next task and I will implement it.
